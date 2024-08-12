@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  app:
+    build: 
+      dockerfile: app_docker/Dockerfile
+      context: ../
+    image: template_api_nodejs_mongodb:v1
+    container_name: template_api_nodejs_mongodb
+    env_file: ./../app/.env
+    volumes:
+      - volume_template_api_nodejs_mongodb:/app
+    ports:
+      - 4000:4000
+    networks:
+      - network_template_api_nodejs_mongodb
+
+volumes:
+  volume_template_api_nodejs_mongodb:
+    name: volume_template_api_nodejs_mongodb
+    external: false
+
+networks:
+  network_template_api_nodejs_mongodb:
+    name: network_template_api_nodejs_mongodb
+    external: true
